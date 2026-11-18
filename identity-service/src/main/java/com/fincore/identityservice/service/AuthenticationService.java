@@ -39,6 +39,7 @@ public class AuthenticationService {
         Profile profile = authenticationMapper.toProfile(requestDto);
 
         user.setProfile(profile);
+        profile.setUser(user);
         User savedUser = userRepository.save(user);
         return authenticationMapper.toRegisterResponseDto(savedUser);
     }

@@ -38,7 +38,7 @@ public class ProfileController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<ProfileMinorResponseDto> getProfileByUsername(@PathVariable String username) {
+    public ResponseEntity<ProfileMinorResponseDto> getProfileByUsername(@PathVariable("username") String username) {
         log.info("GET /api/v1/profiles/{} - Fetching minor profile for user: {}", username);
         ProfileMinorResponseDto profileByUsername = profileService.getProfileByUsername(username);
         log.info("GET /api/v1/profiles/{} - Minor profile: {} successfully getched", profileByUsername.username());

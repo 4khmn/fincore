@@ -12,7 +12,7 @@ public record ProfileMajorResponseDto(
         String bio,
         String email,
         String phoneNumber,
-        String avatar_url,
+        String avatarUrl,
         Role role,
         LocalDateTime createdAt
 ) { }

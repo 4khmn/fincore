@@ -13,13 +13,13 @@ public interface UserProfileMapper {
     @Mapping(target = "firstName", source = "user.profile.firstName")
     @Mapping(target = "lastName", source = "user.profile.lastName")
     @Mapping(target = "bio", source = "user.profile.bio")
-    @Mapping(target = "avatar_url", source = "user.profile.avatar_url")
+    @Mapping(target = "avatarUrl", source = "user.profile.avatarUrl")
     ProfileMinorResponseDto toMinorProfileDto(User user);
 
     @Mapping(target = "firstName", source = "user.profile.firstName")
     @Mapping(target = "lastName", source = "user.profile.lastName")
     @Mapping(target = "bio", source = "user.profile.bio")
-    @Mapping(target = "avatar_url", source = "user.profile.avatar_url")
+    @Mapping(target = "avatarUrl", source = "user.profile.avatarUrl")
     @Mapping(target = "phoneNumber", source = "user.profile.phoneNumber")
     @Mapping(target = "email", source = "user.profile.email")
     ProfileMajorResponseDto toMajorProfileDto(User user);

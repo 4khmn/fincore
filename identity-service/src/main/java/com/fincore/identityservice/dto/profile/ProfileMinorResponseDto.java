@@ -10,6 +10,6 @@ public record ProfileMinorResponseDto(
         String firstName,
         String lastName,
         String bio,
-        String avatar_url,
+        String avatarUrl,
         LocalDateTime createdAt
 ) { }

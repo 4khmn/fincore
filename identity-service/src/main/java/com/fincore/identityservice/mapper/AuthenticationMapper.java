@@ -21,6 +21,8 @@ public interface AuthenticationMapper {
     @Mapping(target = "user", ignore = true)
     @Mapping(target = "bio", ignore = true)
     @Mapping(target = "avatarUrl", ignore = true)
+    @Mapping(target = "email", ignore = true)
+    @Mapping(target = "phoneNumber", ignore = true)
     Profile toProfile(RegisterRequestDto requestDto);
 
 
