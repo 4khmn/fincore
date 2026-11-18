@@ -28,6 +28,7 @@
         <module>ledger-service</module>
         <module>transfer-service</module>
         <module>scheduler-service</module>
+        <module>api-gateway</module>
     </modules>
 
     <!-- Централизованно управляем версиями зависимостей Spring Boot -->
