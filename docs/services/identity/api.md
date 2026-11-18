@@ -18,7 +18,7 @@ POST /auth/register
 Request:
 
 {
-"email": "denis@example.com",
+"username": "denis",
 "password": "StrongPassword123"
 }
 
@@ -26,7 +26,7 @@ Response: 201 Created
 
 {
 "id": "uuid",
-"email": "denis@example.com",
+"username": "denis",
 "createdAt": "2026-11-18T10:00:00Z"
 }
 
@@ -35,7 +35,7 @@ Response: 201 Created
 - 409 — пользователь с таким email уже существует.
 
 Правила:
-- Email должен быть уникальным.
+- username должен быть уникальным.
 - Пароль сохраняется только в виде хеша.
 - Пользователь получает роль USER по умолчанию.
 
@@ -48,7 +48,7 @@ POST /auth/login
 Request:
 
 {
-"email": "denis@example.com",
+"username": "denis",
 "password": "StrongPassword123"
 }
 
@@ -79,7 +79,7 @@ Response: 200 OK
 
 {
 "id": "uuid",
-"email": "denis@example.com",
+"username": "denis",
 "role": "USER",
 "createdAt": "2026-11-18T10:00:00Z"
 }

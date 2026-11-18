@@ -1,0 +1,31 @@
+---
+config:
+  theme: neutral
+  look: classic
+---
+erDiagram
+    SCHEDULED_OPERATIONS ||--o{ SCHEDULED_EXECUTIONS : has
+
+    SCHEDULED_OPERATIONS {
+        UUID id PK
+        UUID owner_user_id
+        UUID from_account_id
+        UUID to_account_id
+        BIGINT amount_minor
+        VARCHAR currency
+        VARCHAR schedule_type
+        VARCHAR cron_expression
+        TIMESTAMP execute_at
+        VARCHAR time_zone
+        VARCHAR status
+        TIMESTAMP created_at
+    }
+
+    SCHEDULED_EXECUTIONS {
+        UUID id PK
+        UUID scheduled_operation_id FK
+        UUID transfer_id
+        VARCHAR status
+        TIMESTAMP scheduled_for
+        TIMESTAMP executed_at
+    }

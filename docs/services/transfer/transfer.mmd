@@ -1,0 +1,27 @@
+---
+config:
+  look: classic
+  theme: neutral
+---
+erDiagram
+    TRANSFERS ||--o{ TRANSFER_STATUS_HISTORY : has
+
+    TRANSFERS {
+        UUID id PK
+        UUID sender_user_id
+        UUID from_account_id
+        UUID to_account_id
+        BIGINT amount_minor
+        VARCHAR currency
+        VARCHAR status
+        VARCHAR idempotency_key
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    TRANSFER_STATUS_HISTORY {
+        UUID id PK
+        UUID transfer_id FK
+        VARCHAR status
+        TIMESTAMP changed_at
+    }

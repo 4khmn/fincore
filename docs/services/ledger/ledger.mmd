@@ -1,0 +1,40 @@
+---
+config:
+  theme: neutral
+  look: classic
+---
+erDiagram
+    ACCOUNTS ||--|| ACCOUNT_BALANCES : has
+    ACCOUNTS ||--o{ LEDGER_ENTRIES : contains
+    LEDGER_TRANSACTIONS ||--|{ LEDGER_ENTRIES : contains
+
+    ACCOUNTS {
+        UUID id PK
+        UUID user_id
+        VARCHAR currency
+        VARCHAR status
+        TIMESTAMP created_at
+    }
+
+    ACCOUNT_BALANCES {
+        UUID account_id PK
+        BIGINT balance_minor
+        TIMESTAMP updated_at
+    }
+
+    LEDGER_TRANSACTIONS {
+        UUID id PK
+        VARCHAR operation_type
+        VARCHAR status
+        VARCHAR reference_id
+        TIMESTAMP created_at
+    }
+
+    LEDGER_ENTRIES {
+        UUID id PK
+        UUID transaction_id FK
+        UUID account_id FK
+        BIGINT amount_minor
+        VARCHAR currency
+        TIMESTAMP created_at
+    }

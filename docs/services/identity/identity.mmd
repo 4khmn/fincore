@@ -1,0 +1,25 @@
+---
+config:
+  theme: neutral
+  look: classic
+---
+erDiagram
+    USERS ||--|| PROFILES : has
+    USERS {
+        UUID id PK
+        VARCHAR username UK
+        VARCHAR password_hash
+        VARCHAR role
+        TIMESTAMP created_at
+    }
+
+    PROFILES {
+        UUID id PK
+        UUID user_id FK
+        TEXT first_name
+        TEXT last_name
+        TEXT bio
+        VARCHAR email UK
+        TEXT phone_number
+        TEXT avatar_url
+    }
