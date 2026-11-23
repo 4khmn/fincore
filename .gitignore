@@ -41,3 +41,5 @@ build/
 .aider.conf.yml
 
 .env
+/identity-service/.env
+/ledger-service/.env

@@ -18,7 +18,7 @@ public class JwtService {
     private final SecretKey secretKey;
     private final long jwtExpirationMs = 86400000; // 24 hours
 
-    public JwtService(@Value("${JWT_SECRET:defaultSecretKeyWithSufficientLengthForHS256AlgorithmAndSecurity}") String secret) {
+    public JwtService(@Value("${jwt.secret}") String secret) {
         this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
