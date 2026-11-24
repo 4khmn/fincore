@@ -1,5 +1,6 @@
 package com.fincore.identityservice.controller;
 
+import com.fincore.identityservice.controller.api.AuthController;
 import com.fincore.identityservice.dto.auth.LoginRequestDto;
 import com.fincore.identityservice.dto.auth.LoginResponseDto;
 import com.fincore.identityservice.dto.auth.RegisterRequestDto;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/api/v1/auth")
-public class AuthController {
+public class AuthControllerImpl implements AuthController {
 
     private final AuthenticationService authenticationService;
 

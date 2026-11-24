@@ -1,5 +1,6 @@
 package com.fincore.identityservice.controller;
 
+import com.fincore.identityservice.controller.api.ProfileController;
 import com.fincore.identityservice.dto.profile.ProfileMajorResponseDto;
 import com.fincore.identityservice.dto.profile.ProfileMinorResponseDto;
 import com.fincore.identityservice.dto.profile.ProfileUpdateDto;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Slf4j
 @RequestMapping("/api/v1/profiles")
-public class ProfileController {
+public class ProfileControllerImpl implements ProfileController {
 
 
     private final ProfileServiceImpl profileService;

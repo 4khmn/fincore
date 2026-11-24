@@ -4,10 +4,7 @@ import com.fincore.ledgerservice.entity.enums.AccountStatus;
 import com.fincore.ledgerservice.entity.enums.AccountType;
 import com.fincore.ledgerservice.entity.enums.Currency;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -43,6 +40,9 @@ public class Account {
     @CreationTimestamp
     @Column(updatable = false, nullable = false, name = "created_at")
     private LocalDateTime createdAt;
+
+    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    private AccountBalance balance;
 }
 
 

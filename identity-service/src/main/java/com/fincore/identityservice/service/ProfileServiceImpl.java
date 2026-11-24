@@ -4,6 +4,7 @@ import com.fincore.identityservice.dto.profile.ProfileMajorResponseDto;
 import com.fincore.identityservice.dto.profile.ProfileMinorResponseDto;
 import com.fincore.identityservice.dto.profile.ProfileUpdateDto;
 import com.fincore.identityservice.entity.User;
+import com.fincore.identityservice.exception.AlreadyExistsException;
 import com.fincore.identityservice.mapper.UserProfileMapper;
 import com.fincore.identityservice.repository.ProfileRepository;
 import com.fincore.identityservice.repository.UserRepository;
@@ -58,10 +59,10 @@ public class ProfileServiceImpl implements ProfileService {
 
     private void validUpdateProfile(User user, ProfileUpdateDto dto) {
         if (dto.email() != null && profileRepository.existsByEmailAndUserNot(dto.email(), user)) {
-            throw new IllegalArgumentException("User with this email already exist");
+            throw new AlreadyExistsException("User with this email already exist");
         }
         if (dto.phoneNumber() != null && profileRepository.existsByPhoneNumberAndUserNot(dto.phoneNumber(), user)) {
-            throw new IllegalArgumentException("User with this phoneNumber already exist");
+            throw new AlreadyExistsException("User with this phoneNumber already exist");
         }
     }
 }

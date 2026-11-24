@@ -9,6 +9,8 @@ Identity Service отвечает за регистрацию пользоват
 
 Base path: /api/v1
 
+ДОКУМЕНТАЦИЯ ДОСТУПНА ПО АДРЕСУ: http://localhost:8081/swagger-ui/index.html#/
+
 ## 1. Регистрация
 
 POST /auth/register

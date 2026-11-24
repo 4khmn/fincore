@@ -10,6 +10,8 @@ Ledger Service отвечает за финансовые счета, балан
 
 Base path: /api/v1
 
+ДОКУМЕНТАЦИЯ ДОСТУПНА ПО АДРЕСУ: http://localhost:8082/swagger-ui/index.html#/
+
 ## 1. Создание счёта
 
 POST /accounts
