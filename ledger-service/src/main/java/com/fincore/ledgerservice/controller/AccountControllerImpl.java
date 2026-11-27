@@ -3,6 +3,8 @@ package com.fincore.ledgerservice.controller;
 import com.fincore.ledgerservice.controller.api.AccountController;
 import com.fincore.ledgerservice.dto.AccountCreateDto;
 import com.fincore.ledgerservice.dto.AccountResponseDto;
+import com.fincore.ledgerservice.dto.TopUpRequestDto;
+import com.fincore.ledgerservice.dto.TopUpResponseDto;
 import com.fincore.ledgerservice.service.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +21,6 @@ import java.util.UUID;
 
 @RestController
 @Slf4j
-@Validated
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/accounts")
 public class AccountControllerImpl implements AccountController {
@@ -27,6 +28,7 @@ public class AccountControllerImpl implements AccountController {
     private final AccountService accountService;
 
 
+    @Override
     @PostMapping
     public ResponseEntity<AccountResponseDto> createAccount(@Valid @RequestBody AccountCreateDto dto,
                                                             @AuthenticationPrincipal Jwt jwt) {
@@ -37,6 +39,7 @@ public class AccountControllerImpl implements AccountController {
         return ResponseEntity.status(HttpStatus.CREATED).body(account);
     }
 
+    @Override
     @GetMapping
     public ResponseEntity<List<AccountResponseDto>> getAllAccountsByUser(@AuthenticationPrincipal Jwt jwt) {
         UUID ownerId = UUID.fromString(jwt.getSubject());
@@ -46,6 +49,7 @@ public class AccountControllerImpl implements AccountController {
         return ResponseEntity.ok(allAccountsByUser);
     }
 
+    @Override
     @GetMapping("/{id}")
     public ResponseEntity<AccountResponseDto> getAccountById(@PathVariable(name = "id") UUID id,
                                                              @AuthenticationPrincipal Jwt jwt) {
@@ -56,4 +60,24 @@ public class AccountControllerImpl implements AccountController {
         return ResponseEntity.ok(account);
     }
 
+    @Override
+    @PostMapping("/{id}/top-ups")
+    public ResponseEntity<TopUpResponseDto> topUp(
+            @PathVariable(name = "id") UUID id,
+            @Valid @RequestBody TopUpRequestDto dto,
+            @RequestHeader("Idempotency-Key") UUID idempotencyKey,
+            @AuthenticationPrincipal Jwt jwt
+    ) {
+        UUID ownerId = UUID.fromString(jwt.getSubject());
+        log.info("POST /api/v1/accounts/{}/top-ups - Top-up request from user: {}", id, ownerId);
+
+        TopUpResponseDto response = accountService.topUp(
+                id,
+                ownerId,
+                dto,
+                idempotencyKey
+        );
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
 }
