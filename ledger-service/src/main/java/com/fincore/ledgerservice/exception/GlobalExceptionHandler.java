@@ -29,6 +29,13 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request);
     }
 
+    @ExceptionHandler(MissMatchIdempotencyKeyException.class)
+    public ResponseEntity<ErrorResponse> handleMissMatchIdempotencyKey(
+            MissMatchIdempotencyKeyException ex, HttpServletRequest request
+    ) {
+        return buildResponse(HttpStatus.CONFLICT, ex.getMessage(), request);
+    }
+
     @ExceptionHandler(AccountCreationException.class)
     public ResponseEntity<ErrorResponse> handleAccountCreation(AccountCreationException ex, HttpServletRequest request
     ) {

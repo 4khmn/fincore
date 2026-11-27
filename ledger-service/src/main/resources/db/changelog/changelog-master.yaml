@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/sql/001-init.sql
   - include:
       file: db/changelog/sql/002-init_system_accounts.sql
+  - include:
+      file: db/changelog/sql/003-create-idempotency-records.sql

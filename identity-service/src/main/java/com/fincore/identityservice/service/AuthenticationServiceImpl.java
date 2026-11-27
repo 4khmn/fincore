@@ -18,6 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements  AuthenticationService {
@@ -41,6 +43,7 @@ public class AuthenticationServiceImpl implements  AuthenticationService {
 
         user.setProfile(profile);
         profile.setUser(user);
+        user.setCreatedAt(LocalDateTime.now());
         User savedUser = userRepository.save(user);
         return authenticationMapper.toRegisterResponseDto(savedUser);
     }
